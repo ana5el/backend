@@ -3,10 +3,12 @@ package ma.gov.prefagadir.application.backend.controllers;
 import ma.gov.prefagadir.application.backend.models.Citoyen;
 import ma.gov.prefagadir.application.backend.models.Point;
 import ma.gov.prefagadir.application.backend.payload.request.AddUserRequest;
+import ma.gov.prefagadir.application.backend.payload.request.CrRequest;
 import ma.gov.prefagadir.application.backend.payload.response.MessageResponse;
 import ma.gov.prefagadir.application.backend.repository.CitoyenRepository;
 import ma.gov.prefagadir.application.backend.repository.PointRepository;
 import ma.gov.prefagadir.application.backend.repository.ProfileRepository;
+import ma.gov.prefagadir.application.backend.services.CertificatResidenceService;
 import ma.gov.prefagadir.application.backend.services.UserService;
 import net.sf.jasperreports.engine.*;
 import org.slf4j.Logger;
@@ -19,10 +21,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -49,6 +50,8 @@ public class TestController {
     @Autowired
     private PasswordEncoder encoder;
 
+    @Autowired
+    private CertificatResidenceService certificatResidenceService;
 
     @PostMapping("/adduser")
     public ResponseEntity<?> addUser(@Valid @RequestBody AddUserRequest request){
@@ -87,9 +90,10 @@ public class TestController {
         return pointRepository.findAll();
     }
 
-    @GetMapping("/certificat/{cin}")
-    public void create(@PathVariable String cin){
-        Citoyen citoyen = citoyenRepository.getById(cin);
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/cr")
+    public void create(@RequestBody CrRequest crRequest, HttpServletResponse httpServletResponse) throws JRException, IOException {
+      /*  Citoyen citoyen = citoyenRepository.getById(cin);
         HashMap certificatparams = new HashMap<String, Object>();
 
         certificatparams.put("prenomfr", citoyen.getPrenomFr());
@@ -105,7 +109,7 @@ public class TestController {
             File file = new ClassPathResource("jasper/cr.jrxml").getFile();
             JasperReport jasperReport = JasperCompileManager.compileReport(file.getPath());
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, certificatparams, new JREmptyDataSource());
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "D:/jasperoutput/test"+new Date().getTime()+".pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "/Users/elmrabtianas/Documents/dev/jasper/"+new Date().getTime()+".pdf");
             LOGGER.info("{}", "Done");
 
 
@@ -115,6 +119,23 @@ public class TestController {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }*/
+
+        byte[] bytes = certificatResidenceService.generateCertificate(crRequest.getCin());
+        ByteArrayOutputStream out = new ByteArrayOutputStream(bytes.length);
+        out.write(bytes, 0, bytes.length);
+
+        httpServletResponse.setContentType("application/pdf");
+        httpServletResponse.addHeader("Content-Disposition","inline; filename="+crRequest.getCin()+".pdf");
+
+        OutputStream os;
+        try{
+            os  = httpServletResponse.getOutputStream();
+            out.writeTo(os);
+            os.flush();
+            os.close();
+        }catch (IOException exception){
+            exception.printStackTrace();
         }
     }
 
