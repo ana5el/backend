@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -29,10 +30,12 @@ public class UserController {
     @Autowired
     private TotpUtils totpUtils;
 
-    @GetMapping("/qr/{id}")
-    public String generateQr(@PathVariable Long id) throws QrGenerationException {
-        User user = userRepository.findById(id).get();
-        return totpUtils.getUriFromImage(user.getSecret());
+    @GetMapping("/qr/{username}")
+    public String generateQr(@PathVariable String username) throws QrGenerationException {
+        //User user = userRepository.findById(id).get();
+        Optional<User> user = userRepository.findByUsername(username);
+        System.out.print("USERNAME :" + username);
+        return totpUtils.getUriFromImage(user.get().getSecret());
     }
 
     @PostMapping(value = {"", "/"})

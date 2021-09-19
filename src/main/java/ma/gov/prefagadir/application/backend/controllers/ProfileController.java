@@ -39,10 +39,16 @@ public class ProfileController {
         return  ResponseEntity.ok(new MessageResponse("Profile add successfully"));
     }
 
-    @PutMapping("/{id}")
+    /*@PutMapping("/{id}")
     private Profile updateProfile(@PathVariable Long id,@RequestBody Profile p){
         profileService.updateProfile(id, p);
         return p;
+    }
+*/
+
+    @PutMapping("/{id}")
+    private Profile updateProfilePrivileges(@PathVariable Long id, @RequestBody Long[] privilegesIds){
+         return profileService.updatePrivileges(id, privilegesIds);
     }
 
 

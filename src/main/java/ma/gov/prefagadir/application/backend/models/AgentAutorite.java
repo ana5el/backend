@@ -39,4 +39,14 @@ public class AgentAutorite {
         this.tel = tel;
         this.grade = grade;
     }
+
+    public AgentAutorite(String cin, String nom, String prenom, String tel, Grade grade, AAL aal) {
+        this.id = id;
+        this.cin = cin;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.tel = tel;
+        this.grade = grade;
+        this.aal = aal;
+    }
 }

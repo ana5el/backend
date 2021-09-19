@@ -8,6 +8,8 @@
     <parameter name="cin" class="java.lang.String"/>
     <parameter name="situation" class="java.lang.String"/>
     <parameter name="profession" class="java.lang.String"/>
+    <parameter name="userImage" class="java.lang.String"/>
+
     <background>
         <band splitType="Stretch"/>
     </background>
@@ -54,6 +56,10 @@ PREFECTURE AGADIR IDA OUTANANE
                 </textElement>
                 <text><![CDATA[NOUS CERTIFIONS QUE        نشهد ان]]></text>
             </staticText>
+            <image>
+                <reportElement x="660" y="80" width="90" height="100" uuid="6a4f7500-184d-4f19-85d2-6f958ca81bd0"/>
+                <imageExpression><![CDATA["https://erasmuscoursescroatia.com/wp-content/uploads/2015/11/no-user.jpg"]]></imageExpression>
+            </image>
         </band>
     </title>
     <pageHeader>

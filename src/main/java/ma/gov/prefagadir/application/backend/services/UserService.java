@@ -1,7 +1,6 @@
 package ma.gov.prefagadir.application.backend.services;
 
-import ma.gov.prefagadir.application.backend.models.Profile;
-import ma.gov.prefagadir.application.backend.models.User;
+import ma.gov.prefagadir.application.backend.models.*;
 import ma.gov.prefagadir.application.backend.payload.request.AddUserRequest;
 import ma.gov.prefagadir.application.backend.repository.ProfileRepository;
 import ma.gov.prefagadir.application.backend.repository.UserRepository;
@@ -28,8 +27,17 @@ public class UserService {
     @Autowired
     private ProfileRepository profileRepository;
 
+    @Autowired
+    private AALService aalService;
+
+    @Autowired
+    private GradeService gradeService;
+
+    @Autowired
+    private  AgentAutotiteService agentAutotiteService;
 
     public User addUser(final AddUserRequest request){
+        /*
         if(userRepository.existsByUsername(request.getUsername())){
             throw new RuntimeException("User already exist");
         }
@@ -43,6 +51,19 @@ public class UserService {
         );
         userRepository.save(user);
         return user;
+
+         */
+
+        if(userRepository.existsByUsername(request.getLogin())){
+            throw new RuntimeException("User already exist");
+        }
+
+        Profile profile = profileRepository.getById(request.getProfileId());
+        AAL aal = aalService.getAAL(request.getAalId());
+        Grade grade = gradeService.getGrade(request.getGradeId());
+        AgentAutorite agentAutorite = agentAutotiteService.save(new AgentAutorite(request.getCin(), request.getNom(), request.getPrenom(), request.getTel(), grade, aal));
+        return userRepository.save(new User(request.getLogin(), request.getPassword(), totpUtils.generateSecret(), true, profile, agentAutorite));
+
     }
 
     public void deleteUser(Long id){

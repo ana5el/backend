@@ -14,7 +14,7 @@ public class GeneralUtils {
     public static List<SimpleGrantedAuthority> buildSimpleGrantedAuthorities(final Set<Privilege> privileges){
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         for(Privilege privilege : privileges){
-            authorities.add(new SimpleGrantedAuthority(privilege.getName()));
+            authorities.add(new SimpleGrantedAuthority(privilege.getLabelFr()));
         }
         return authorities;
     }

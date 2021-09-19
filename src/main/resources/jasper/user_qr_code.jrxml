@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="user_qr_code" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="821ea108-2fa8-4196-a2c7-af31b9793b15">
+	<parameter name="username" class="java.lang.String"/>
+	<parameter name="password" class="java.lang.String"/>
+	<parameter name="fullName" class="java.lang.String"/>
+	<parameter name="cin" class="java.lang.String"/>
+	<parameter name="aal" class="java.lang.String"/>
+	<parameter name="qrcode" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<textField pattern="M/d/yy">
+				<reportElement x="470" y="54" width="89" height="20" uuid="b3f169f7-a434-4adc-967f-0cadff644945"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="10" y="9" width="130" height="91" uuid="a34f8b33-0f27-4c44-8ee1-9356f63d0c1d"/>
+				<imageExpression><![CDATA["/Users/elmrabtianas/Downloads/login-photo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="331" splitType="Stretch">
+			<textField>
+				<reportElement x="340" y="0" width="100" height="16" uuid="13885036-1ead-4f59-82ba-d5cc9b870b90"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fullName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="40" width="149" height="20" uuid="36d8b6cf-3b58-494d-84f8-71ccde8174fe"/>
+				<textFieldExpression><![CDATA[$P{cin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="20" width="160" height="19" uuid="dd359833-bdc8-4c3a-af27-dce53df9ddc1"/>
+				<textFieldExpression><![CDATA[$P{aal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="291" width="176" height="18" uuid="adc19269-e61c-4668-b228-df0cfad1b007"/>
+				<text><![CDATA[Besoin d'aide ?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="310" width="437" height="21" uuid="f4711af3-2d1e-4e2f-adf1-4bb5f51b7819"/>
+				<text><![CDATA[* Contactez le service informatique en cas de problème au : +212 500000000]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="220" width="100" height="20" uuid="c8fe5912-5ee9-4a42-8ad1-624e03ffe99b"/>
+				<text><![CDATA[Instructions]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="245" width="218" height="15" uuid="c4e95e23-4d55-4a3f-ad2a-56b68ae77f60"/>
+				<text><![CDATA[1. Installer l'application Google Authenticator]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="261" width="218" height="15" uuid="a7b35708-1a63-41e0-9359-f386c2c80d10"/>
+				<text><![CDATA[2. Scanner le QR code au-dessus]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="390" y="90" width="110" height="99" uuid="ecb17ad8-c0f9-4a56-b04c-bf8e09707f3b"/>
+				<graphicElement>
+					<pen lineWidth="4.0" lineStyle="Dashed" lineColor="#FF051E"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="21" y="120" width="97" height="18" uuid="a30930a7-a90a-4c75-ba20-3e33706b754b"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nom d'utilisateur : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="130" y="148" width="117" height="18" uuid="f618d94a-6205-4659-898f-4d72a94208f3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{password}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="21" y="148" width="99" height="18" uuid="052081bb-2e81-44b9-b2d9-97410dd0552c"/>
+				<text><![CDATA[Mot de passse     : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="130" y="120" width="117" height="18" uuid="52cd28b1-2756-48b1-9dec-3eea54568832"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{username}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="400" y="93" width="100" height="93" uuid="0da10a03-2779-400d-870b-b16a34b9d370"/>
+				<imageExpression><![CDATA[javax.imageio.ImageIO.read(new java.io.ByteArrayInputStream(Base64.getDecoder().decode($P{qrcode})))]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

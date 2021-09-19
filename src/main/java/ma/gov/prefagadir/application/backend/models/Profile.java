@@ -1,5 +1,6 @@
 package ma.gov.prefagadir.application.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,6 +32,7 @@ public class Profile {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "profile_privilege", joinColumns = {@JoinColumn( name = "profile_id")}, inverseJoinColumns ={@JoinColumn(name = "privilege_id")})
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Set<Privilege> privileges = new HashSet<>();
 
     public Profile(String name, String labelAr, String labelFr) {

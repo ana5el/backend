@@ -43,6 +43,15 @@ public class User {
         this.profile = profile;
     }
 
+    public User(String username, String password, String secret, boolean active, Profile profile, AgentAutorite agentAutorite) {
+        this.username = username;
+        this.password = password;
+        this.secret = secret;
+        this.active = active;
+        this.profile = profile;
+        this.agentAutorite = agentAutorite;
+    }
+
     public Long getId() {
         return id;
     }

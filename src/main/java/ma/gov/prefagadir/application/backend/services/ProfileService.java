@@ -7,6 +7,8 @@ import ma.gov.prefagadir.application.backend.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -51,6 +53,16 @@ public class ProfileService {
         profileFromDb.setName(profile.getName());
         profileFromDb.setPrivileges(profile.getPrivileges());
         profileRepository.save(profileFromDb);
+    }
+
+    public Profile updatePrivileges(Long idProfile, Long[] privilegesIds){
+        Profile profile = profileRepository.getById(idProfile);
+        Set<Privilege> privileges = new HashSet<>();
+        for (Long id : privilegesIds){
+            privileges.add(privilegeRepository.getById(id));
+        }
+        profile.setPrivileges(privileges);
+        return profileRepository.save(profile);
     }
 
     public List<Profile> getAllProfiles(){
