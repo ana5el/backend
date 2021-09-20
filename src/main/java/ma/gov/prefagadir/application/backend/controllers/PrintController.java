@@ -48,6 +48,9 @@ public class PrintController {
         certificatparams.put("cin", citoyen.getCin());
         certificatparams.put("profession", citoyen.getProfession());
         certificatparams.put("situation", citoyen.getSituationFamiliale());
+        certificatparams.put("adrFr",crRequest.getAdrFr());
+        certificatparams.put("situation",citoyen.getSituationFamiliale());
+        certificatparams.put("profession",citoyen.getProfession().getLabelFr());
 
        File file =  new ClassPathResource("jasper/cr.jrxml").getFile();
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getPath());
@@ -65,7 +68,7 @@ public class PrintController {
         InputStream stream = new ByteArrayInputStream(Base64.decodeBase64(user.getSecret().getBytes()));
         HashMap params = new HashMap<String, Object>();
         params.put("username", user.getUsername());
-        params.put("password", "prefAio@2021");
+        params.put("password", "prefaio@2021");
         params.put("aal", user.getAgentAutorite().getAal().getLabelFr());
         params.put("fullName", new String(user.getAgentAutorite().getNom() + " " + user.getAgentAutorite().getPrenom()).toUpperCase());
         params.put("cin", user.getAgentAutorite().getCin());

@@ -62,7 +62,7 @@ public class UserService {
         AAL aal = aalService.getAAL(request.getAalId());
         Grade grade = gradeService.getGrade(request.getGradeId());
         AgentAutorite agentAutorite = agentAutotiteService.save(new AgentAutorite(request.getCin(), request.getNom(), request.getPrenom(), request.getTel(), grade, aal));
-        return userRepository.save(new User(request.getLogin(), request.getPassword(), totpUtils.generateSecret(), true, profile, agentAutorite));
+        return userRepository.save(new User(request.getLogin(), encoder.encode(request.getPassword()), totpUtils.generateSecret(), true, profile, agentAutorite));
 
     }
 

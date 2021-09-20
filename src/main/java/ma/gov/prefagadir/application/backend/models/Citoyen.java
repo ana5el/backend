@@ -16,18 +16,20 @@ public class Citoyen {
     private String  cin;
     @Column(name = "date_naissance")
     private Date dateNaissance;
-    @OneToOne
-    @JoinColumn(name = "cin_pere")
-    private Citoyen pere;
-    @OneToOne
-    @JoinColumn(name = "cin_mere")
-    private Citoyen mere;
+    @Column(name = "lieu_naissance")
+    private String lieuNaissance;
+    private String nomMereAr;
+    private String nomMereFr;
+    private String nomPereFr;
+    private String nomPereAr;
     private String situationFamiliale;
     private String nomAr;
     private String prenomAr;
     private String nomFr;
     private String prenomFr;
-    private String profession;
+    @OneToOne
+    private Profession profession;
+
 
 
 }

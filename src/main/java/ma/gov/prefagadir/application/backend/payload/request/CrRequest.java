@@ -6,4 +6,5 @@ import lombok.Data;
 public class CrRequest {
 
     private String cin;
+    private String adrFr;
 }

@@ -9,6 +9,7 @@
     <parameter name="situation" class="java.lang.String"/>
     <parameter name="profession" class="java.lang.String"/>
     <parameter name="userImage" class="java.lang.String"/>
+    <parameter name="adrFr" class="java.lang.String"/>
 
     <background>
         <band splitType="Stretch"/>
@@ -186,6 +187,15 @@ PREFECTURE AGADIR IDA OUTANANE
                         <font fontName="NewFontArialAr" size="12" isBold="true"/>
                     </textElement>
                     <textFieldExpression><![CDATA[$P{cin}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="10" y="230" width="390" height="15" uuid="5640a6aa-075a-46a1-bbcd-1c66ee2a5b62">
+                        <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    </reportElement>
+                    <textElement textAlignment="Center">
+                        <font fontName="NewFontArialAr" size="12" isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{adrFr}]]></textFieldExpression>
                 </textField>
             </frame>
             <frame>
