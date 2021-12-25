@@ -51,8 +51,14 @@ public class PrintController {
         certificatparams.put("adrFr",crRequest.getAdrFr());
         certificatparams.put("situation",citoyen.getSituationFamiliale());
         certificatparams.put("profession",citoyen.getProfession().getLabelFr());
+        certificatparams.put("nomPereAr",citoyen.getNomPereAr());
+        certificatparams.put("nomPereFr", citoyen.getNomPereFr());
+        certificatparams.put("nomMereFr", citoyen.getNomMereFr());
+        certificatparams.put("nomMereAr", citoyen.getNomMereAr());
+        certificatparams.put("datenaissance", citoyen.getDateNaissance());
 
-       File file =  new ClassPathResource("jasper/cr.jrxml").getFile();
+
+        File file =  new ClassPathResource("jasper/cr.jrxml").getFile();
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getPath());
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,certificatparams, new JREmptyDataSource());
         JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());

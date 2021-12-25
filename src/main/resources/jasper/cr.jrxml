@@ -10,7 +10,11 @@
     <parameter name="profession" class="java.lang.String"/>
     <parameter name="userImage" class="java.lang.String"/>
     <parameter name="adrFr" class="java.lang.String"/>
-
+    <parameter name="nomPereFr" class="java.lang.String"/>
+    <parameter name="nomPereAr" class="java.lang.String"/>
+    <parameter name="nomMereAr" class="java.lang.String"/>
+    <parameter name="nomMereFr" class="java.lang.String"/>
+    <parameter name="datenaissance" class="java.util.Date"/>
     <background>
         <band splitType="Stretch"/>
     </background>
@@ -197,6 +201,33 @@ PREFECTURE AGADIR IDA OUTANANE
                     </textElement>
                     <textFieldExpression><![CDATA[$P{adrFr}]]></textFieldExpression>
                 </textField>
+                <textField pattern="dd-MM-YYYY">
+                    <reportElement x="160" y="50" width="150" height="15" uuid="a0f2e3f0-fa5b-4d4e-8054-be70b2373a11">
+                        <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    </reportElement>
+                    <textElement>
+                        <font fontName="NewFontArialAr" size="12" isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{datenaissance}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="160" y="72" width="150" height="15" uuid="859a6fe2-8e10-4182-8c94-0051d3b5dd46">
+                        <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    </reportElement>
+                    <textElement>
+                        <font fontName="NewFontArialAr" size="12" isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{nomPereFr}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="160" y="90" width="150" height="15" uuid="4d41fb82-298e-43aa-9214-c781eabaa39e">
+                        <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    </reportElement>
+                    <textElement>
+                        <font fontName="NewFontArialAr" size="12" isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{nomMereFr}]]></textFieldExpression>
+                </textField>
             </frame>
             <frame>
                 <reportElement x="429" y="0" width="372" height="271" uuid="aab6eabd-4c43-409b-8415-9b6d4659f82a"/>
@@ -285,7 +316,6 @@ PREFECTURE AGADIR IDA OUTANANE
                     </reportElement>
                     <textElement textAlignment="Right">
                         <font fontName="NewFontArialAr" size="12" isBold="true"/>
-
                     </textElement>
                     <textFieldExpression><![CDATA[$P{prenomar}]]></textFieldExpression>
                 </textField>
@@ -295,7 +325,6 @@ PREFECTURE AGADIR IDA OUTANANE
                     </reportElement>
                     <textElement textAlignment="Right">
                         <font fontName="NewFontArialAr" size="12" isBold="true"/>
-
                     </textElement>
                     <textFieldExpression><![CDATA[$P{nomar}]]></textFieldExpression>
                 </textField>
@@ -307,6 +336,33 @@ PREFECTURE AGADIR IDA OUTANANE
                         <font fontName="NewFontArialAr" size="12" isBold="true"/>
                     </textElement>
                     <textFieldExpression><![CDATA[$P{cin}]]></textFieldExpression>
+                </textField>
+                <textField pattern="YYYY-MM-dd">
+                    <reportElement x="80" y="57" width="140" height="15" uuid="efd42ebd-c13b-4141-8e14-b5ee4fd139f9">
+                        <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    </reportElement>
+                    <textElement textAlignment="Right" >
+                        <font fontName="NewFontArialAr" size="12" isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{datenaissance}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="120" y="79" width="100" height="15" uuid="1b0c4ea7-20cb-455d-acd1-9f7f1d89e875">
+                        <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    </reportElement>
+                    <textElement textAlignment="Right">
+                        <font fontName="NewFontArialAr" size="12" isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{nomPereAr}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="120" y="100" width="100" height="15" uuid="d0fb184f-cf79-45fe-a483-9fcb990d422f">
+                        <property name="com.jaspersoft.studio.unit.height" value="px"/>
+                    </reportElement>
+                    <textElement textAlignment="Right">
+                        <font fontName="NewFontArialAr" size="12" isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{nomMereAr}]]></textFieldExpression>
                 </textField>
             </frame>
         </band>
